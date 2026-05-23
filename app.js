@@ -2,7 +2,7 @@
   const app = document.querySelector("#app");
   const tabs = document.querySelectorAll(".tab-link");
   const state = {
-    activeTab: "bookings",
+    activeTab: "overview",
     bookings: [],
     cleaners: [],
     checklists: [],
@@ -46,10 +46,63 @@
     `;
   }
 
+  function renderOverviewTab() {
+    const nextBooking = state.bookings[0];
+    const openChecklist = state.checklists.filter((item) => !item.done).slice(0, 4);
+    const openInvoices = state.invoices.filter((invoice) => invoice.status !== "Paid");
+    return `
+      <section class="dashboard overview-grid">
+        <article class="overview-feature">
+          <span class="eyebrow">Next service window</span>
+          ${nextBooking ? `
+            <h2>${nextBooking.customer_name}</h2>
+            <p>${nextBooking.service_type} • ${nextBooking.home_size}</p>
+            <div class="detail-grid">
+              <div><span>Address</span><strong>${nextBooking.address}</strong></div>
+              <div><span>Cleaner</span><strong>${nextBooking.cleaner_name || "Unassigned"}</strong></div>
+              <div><span>Status</span><strong>${nextBooking.status}</strong></div>
+              <div><span>Revenue</span><strong>${money.format(nextBooking.total)}</strong></div>
+            </div>
+          ` : `<div class="settings-note">No booking is scheduled yet.</div>`}
+        </article>
+        <article class="overview-stack">
+          <div class="summary-card">
+            <h3>Open quality checks</h3>
+            ${openChecklist.length
+              ? openChecklist.map((item) => `<div class="list-line"><b>${item.customer_name || "Booking removed"}</b><span>${item.item}</span></div>`).join("")
+              : `<div class="settings-note">No open quality items.</div>`}
+          </div>
+          <div class="summary-card">
+            <h3>Open invoices</h3>
+            ${openInvoices.length
+              ? openInvoices.map((invoice) => `<div class="list-line"><b>${invoice.invoice_code}</b><span>${invoice.customer_name || "Booking removed"} • ${money.format(invoice.amount)}</span></div>`).join("")
+              : `<div class="settings-note">All invoices are paid.</div>`}
+          </div>
+        </article>
+      </section>
+      <section class="settings-note">
+        <h2>Today’s Route Board</h2>
+        <div class="route-board">
+          ${state.bookings.map((booking, index) => `
+            <article class="route-stop">
+              <span>Stop ${index + 1}</span>
+              <strong>${booking.customer_name}</strong>
+              <p>${booking.service_type} • ${booking.address}</p>
+              <em>${booking.cleaner_name || "Unassigned"} • ${formatDate(booking.scheduled_date)}</em>
+            </article>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  }
+
   function renderBookingsTab() {
     return `
-      <section class="settings-note">
+      <section class="settings-note split-note">
+        <div>
         <h2>Create Booking</h2>
+          <p>Build the schedule around service type, home size, and route value.</p>
+        </div>
         <form id="bookingForm" style="display:grid;gap:10px">
           <div style="display:grid;gap:10px;grid-template-columns:1fr 1fr">
             <input name="customerName" placeholder="Customer name" required>
@@ -69,7 +122,7 @@
         </form>
       </section>
       <section class="settings-note">
-        <h2>Booking Queue</h2>
+        <h2>Schedule Queue</h2>
         ${state.bookings.map((booking) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #ebeef7"><div><b>${booking.customer_name}</b><div>${booking.service_type} • ${booking.home_size}</div><div>${booking.address}</div></div><div>${money.format(booking.total)} • ${booking.status} • ${booking.cleaner_name || "Unassigned"} • ${formatDate(booking.scheduled_date)}</div></div>`).join("")}
       </section>
     `;
@@ -89,7 +142,7 @@
         </form>
       </section>
       <section class="settings-note">
-        <h2>Cleaner Board</h2>
+        <h2>Team Board</h2>
         ${state.cleaners.map((cleaner) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #ebeef7"><div><b>${cleaner.name}</b><div>${cleaner.zone}</div></div><div>${cleaner.status}</div></div>`).join("")}
       </section>
     `;
@@ -221,6 +274,7 @@
 
   function render() {
     let tabContent = "";
+    if (state.activeTab === "overview") tabContent = renderOverviewTab();
     if (state.activeTab === "bookings") tabContent = renderBookingsTab();
     if (state.activeTab === "ops") tabContent = renderOpsTab();
     if (state.activeTab === "quality") tabContent = renderQualityTab();

@@ -352,6 +352,78 @@ button.ghost {
   margin-top: 22px;
 }
 
+.overview-grid {
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.overview-feature,
+.summary-card,
+.route-stop {
+  border: 1px solid rgba(20, 49, 45, 0.14);
+  border-radius: 28px;
+  background: var(--card);
+  box-shadow: 0 24px 80px rgba(31, 122, 90, 0.12);
+}
+
+.overview-feature,
+.summary-card,
+.route-stop {
+  padding: 24px;
+}
+
+.overview-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.detail-grid,
+.route-board {
+  display: grid;
+  gap: 14px;
+}
+
+.detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.detail-grid span,
+.route-stop span,
+.list-line span {
+  color: rgba(20, 49, 45, 0.7);
+}
+
+.detail-grid strong,
+.route-stop strong {
+  display: block;
+  margin-top: 4px;
+}
+
+.route-board {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 18px;
+}
+
+.route-stop em {
+  display: block;
+  margin-top: 10px;
+  color: rgba(20, 49, 45, 0.72);
+  font-style: normal;
+}
+
+.list-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(20, 49, 45, 0.08);
+}
+
+.split-note p {
+  margin-top: 0;
+  color: rgba(20, 49, 45, 0.72);
+}
+
 article {
   padding: 24px;
 }
@@ -414,6 +486,8 @@ article h2 {
   .hero,
   .landing,
   .dashboard,
+  .overview-grid,
+  .detail-grid,
   .service-grid {
     grid-template-columns: 1fr;
   }
