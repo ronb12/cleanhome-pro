@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CleanHome Pro Prototype</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanHome Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <main class="clean-shell">
@@ -17,125 +17,34 @@
           CleanHome Pro
         </a>
         <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#booking">Booking</a>
-          <a href="#dashboard">Admin Preview</a>
+          <button class="tab-link active" data-tab="bookings" type="button">Bookings</button>
+          <button class="tab-link" data-tab="ops" type="button">Ops</button>
+          <button class="tab-link" data-tab="quality" type="button">Quality</button>
+          <button class="tab-link" data-tab="billing" type="button">Billing</button>
         </div>
-        <a class="nav-cta" href="#booking">Book a Cleaning</a>
+        <span class="nav-cta">Housecleaning OS</span>
       </nav>
 
       <section class="landing">
         <div class="landing-copy">
-          <p class="eyebrow">Residential cleaning made simple</p>
-          <h1>A cleaner home without the back-and-forth.</h1>
+          <p class="eyebrow">Residential cleaning made operational</p>
+          <h1>Quotes, crews, quality checks, and billing in one workflow.</h1>
           <p>
-            CleanHome Pro gives housecleaning companies a polished customer landing page,
-            instant quote flow, recurring-cleaning plans, cleaner checklists, route previews,
-            invoices, and admin-ready operations tools.
+            CleanHome Pro now runs as a multi-view operations app for housecleaning teams,
+            instead of a one-screen prototype.
           </p>
-          <div class="actions">
-            <a class="button" href="#booking">Get Instant Quote</a>
-            <a class="button ghost" href="#dashboard">View Admin Preview</a>
-          </div>
-          <div class="trust-strip" aria-label="CleanHome Pro benefits">
-            <span>Verified checklists</span>
-            <span>Recurring plans</span>
-            <span>Photo proof</span>
-          </div>
         </div>
 
-        <aside id="booking" class="booking-card" aria-label="Booking preview">
-          <span class="pill">Instant Estimate</span>
-          <h2>Book Your Cleaning</h2>
-          <label>
-            Home size
-            <select id="homeSize">
-              <option>2 bed / 1 bath</option>
-              <option selected>3 bed / 2 bath</option>
-              <option>4 bed / 3 bath</option>
-            </select>
-          </label>
-          <label>
-            Cleaning type
-            <select id="cleanType">
-              <option>Standard Clean</option>
-              <option selected>Deep Clean</option>
-              <option>Move-out Clean</option>
-            </select>
-          </label>
-          <div class="estimate">
-            <span>Estimated total</span>
-            <strong id="estimateTotal">$240</strong>
-          </div>
-          <button id="quoteBtn" type="button">Create Demo Quote</button>
+        <aside class="booking-card" aria-label="Booking summary">
+          <span class="pill">Live workflow</span>
+          <h2>Quote to completion</h2>
+          <p>Create bookings, assign cleaners, capture quality checks, and issue invoices.</p>
         </aside>
       </section>
 
-      <section id="services" class="service-grid" aria-label="Cleaning services">
-        <article>
-          <span class="icon">01</span>
-          <h2>Standard Cleaning</h2>
-          <p>Weekly, biweekly, or monthly resets with room-by-room task lists and customer reminders.</p>
-        </article>
-        <article>
-          <span class="icon">02</span>
-          <h2>Deep Cleaning</h2>
-          <p>Baseboards, appliances, bathrooms, floors, and photo proof before the job is marked complete.</p>
-        </article>
-        <article>
-          <span class="icon">03</span>
-          <h2>Move-out Cleaning</h2>
-          <p>High-priority turnover jobs with checklist tracking, invoice status, and route scheduling.</p>
-        </article>
+      <section id="app" class="app-shell">
+        <div class="settings-note">Loading CleanHome Pro...</div>
       </section>
-
-      <section class="hero" id="dashboard">
-        <div class="copy">
-          <p class="eyebrow">Prototype 12 • Housecleaning business app</p>
-          <h1>Admin Dashboard Preview</h1>
-          <p>
-            A no-backend operations dashboard for residential cleaners: quote requests,
-            recurring cleanings, cleaner schedules, checklists, photos, invoices, and reminders.
-          </p>
-          <div class="actions">
-            <button id="routeBtn" class="ghost" type="button">Preview Route</button>
-          </div>
-        </div>
-
-        <aside class="summary">
-          <span>Today booked</span>
-          <strong>$1,285</strong>
-          <p>5 jobs • 2 cleaners • 1 quote pending</p>
-        </aside>
-      </section>
-
-      <section class="dashboard">
-        <article class="jobs">
-          <h2>Today’s Schedule</h2>
-          <div class="job"><b>9:00 AM</b><span>Deep Clean - Bradley Home</span><em>Paid</em></div>
-          <div class="job"><b>12:30 PM</b><span>Move-out Clean - Apt 4B</span><em>Quote sent</em></div>
-          <div class="job"><b>3:00 PM</b><span>Recurring Standard - Weekly</span><em>Reminder due</em></div>
-        </article>
-
-        <article class="checklist">
-          <h2>Cleaner Checklist</h2>
-          <label><input type="checkbox" checked /> Kitchen counters and sink</label>
-          <label><input type="checkbox" /> Bathrooms sanitized</label>
-          <label><input type="checkbox" /> Floors vacuumed and mopped</label>
-          <label><input type="checkbox" /> Before/after photos</label>
-          <label><input type="checkbox" /> Customer sign-off</label>
-        </article>
-
-        <article>
-          <h2>Later Backend</h2>
-          <p>
-            Add real booking storage, customer accounts, Stripe payments, and Resend emails later.
-            Admin settings should include masked Stripe and Resend API key fields.
-          </p>
-        </article>
-      </section>
-
-      <div id="toast" class="toast" role="status" aria-live="polite"></div>
     </main>
     <script src="./app.js"></script>
   </body>

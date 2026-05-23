@@ -1,0 +1,11 @@
+{
+  "name": "cleanhome-pro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "check": "node --check app.js && node --check api/bootstrap.js && node --check api/bookings.js && node --check api/cleaners.js && node --check api/checklists.js && node --check api/invoices.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2"
+  }
+}

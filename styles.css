@@ -48,6 +48,22 @@ body {
   text-decoration: none;
 }
 
+.tab-link {
+  border: 0;
+  background: transparent;
+  color: rgba(20, 49, 45, 0.72);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.tab-link.active {
+  color: white;
+  background: var(--green);
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -191,6 +207,27 @@ body {
   color: var(--ink);
   background: rgba(255, 255, 255, 0.82);
   font: inherit;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid rgba(20, 49, 45, 0.16);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+button {
+  border: 0;
+  cursor: pointer;
 }
 
 .estimate {
